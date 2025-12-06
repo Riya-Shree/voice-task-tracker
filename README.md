@@ -348,13 +348,9 @@ sudo systemctl start mongod            # Linux
 - Use HTTPS (or localhost)
 - Test with different browsers
 
-## 📄 License
-
-MIT
-
 ## 👤 Author
 
-[Your Name]
+Riya Shree
 
 ## 🙏 Acknowledgments
 
