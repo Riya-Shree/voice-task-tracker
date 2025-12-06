@@ -271,7 +271,7 @@ voice-task-tracker/
 ### Tools Used
 
 - **GitHub Copilot**: Code completion and boilerplate generation
-- **ChatGPT/Claude**: Architecture planning, debugging, prompt engineering for Groq
+- **ChatGPT**: Architecture planning, debugging, prompt engineering for Groq
 
 ### What They Helped With
 
