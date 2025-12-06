@@ -2,6 +2,10 @@
 
 A full-stack task management application with intelligent voice input powered by Groq AI. Users can create tasks by speaking naturally, and the system intelligently extracts task details like title, priority, due date, and status.
 
+## 🎥 Demo Video
+
+[Upload your demo video to Loom or Google Drive]
+
 ## ✨ Features
 
 - **Voice Input**: Create tasks by speaking naturally
@@ -53,6 +57,91 @@ Before running this project, make sure you have:
    - Sign up at https://console.groq.com
    - Create a new API key (it's free!)
 
+## 🚀 Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd voice-task-tracker
+```
+
+### 2. Backend Setup
+
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install dependencies
+npm install
+
+# Create .env file
+cp .env.example .env
+
+# Edit .env and add your credentials
+# MONGODB_URI=mongodb://localhost:27017/task-tracker
+# GROQ_API_KEY=your_groq_api_key_here
+# PORT=5000
+```
+
+**For MongoDB:**
+
+- If using MongoDB Compass locally: Use `mongodb://localhost:27017/task-tracker`
+- If using MongoDB Atlas: Use your Atlas connection string
+
+### 3. Frontend Setup
+
+```bash
+# Open a new terminal and navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# The app will run on http://localhost:3000 by default
+```
+
+### 4. Start MongoDB
+
+**Option A: MongoDB Compass (Local)**
+
+```bash
+# Start MongoDB service
+# On macOS:
+brew services start mongodb-community
+
+# On Windows:
+# Start MongoDB service from Services
+
+# On Linux:
+sudo systemctl start mongod
+```
+
+**Option B: MongoDB Atlas (Cloud)**
+
+- No local installation needed
+- Just use your Atlas connection string in `.env`
+
+### 5. Run the Application
+
+**Terminal 1 - Backend:**
+
+```bash
+cd backend
+npm run dev
+```
+
+Server will start on http://localhost:5000
+
+**Terminal 2 - Frontend:**
+
+```bash
+cd frontend
+npm start
+```
+
+App will open on http://localhost:3000
+
 ## 📁 Project Structure
 
 ```
@@ -101,6 +190,58 @@ voice-task-tracker/
 - **Delete**: Click the trash icon (with confirmation)
 - **Status Update**: Drag tasks between columns (Kanban) or use dropdown (List)
 
+## 🔌 API Endpoints
+
+### Tasks
+
+**GET /api/tasks**
+
+- Get all tasks
+- Response: Array of task objects
+
+**GET /api/tasks/:id**
+
+- Get single task
+- Response: Task object
+
+**POST /api/tasks**
+
+- Create new task
+- Body: `{ title, description, status, priority, dueDate }`
+- Response: Created task object
+
+**PUT /api/tasks/:id**
+
+- Update task
+- Body: `{ title, description, status, priority, dueDate }`
+- Response: Updated task object
+
+**DELETE /api/tasks/:id**
+
+- Delete task
+- Response: `{ message: "Task deleted successfully" }`
+
+### Voice Input
+
+**POST /api/voice/parse**
+
+- Parse voice input to task
+- Body: FormData with audio file
+- Response:
+
+```json
+{
+  "transcript": "transcribed text",
+  "parsed": {
+    "title": "extracted title",
+    "description": "extracted description",
+    "priority": "High",
+    "status": "To Do",
+    "dueDate": "2024-12-15T18:00:00.000Z"
+  }
+}
+```
+
 ## 💡 Key Design Decisions
 
 ### Voice Processing Pipeline
@@ -125,6 +266,32 @@ voice-task-tracker/
 - No Redux (not required for single-user app)
 - Modular components (TaskCard, Modal)
 
+## 🤖 AI Tools Usage
+
+### Tools Used
+
+- **GitHub Copilot**: Code completion and boilerplate generation
+- **ChatGPT/Claude**: Architecture planning, debugging, prompt engineering for Groq
+
+### What They Helped With
+
+1. **Boilerplate Code**: React component structure, Express routes
+2. **Date Parsing Logic**: Complex relative date parsing function
+3. **Groq Integration**: Prompts for task parsing, error handling
+4. **UI/UX Design**: Tailwind CSS classes, responsive layout
+5. **Debugging**: MongoDB connection issues, audio processing errors
+
+### Notable Prompts
+
+- "Extract task details from natural language text and return JSON with title, priority, status, and due date"
+- "Parse relative dates like 'tomorrow evening', 'next Monday', 'in 3 days' to ISO format"
+
+### Learnings
+
+- AI tools significantly speed up development but require careful review
+- Prompt engineering is crucial for accurate task extraction
+- Combining multiple AI services (Whisper + LLM) provides better results than single-step processing
+
 ## ⚠️ Known Limitations
 
 1. **Voice Input Quality**: Accuracy depends on microphone quality and background noise
@@ -146,9 +313,48 @@ voice-task-tracker/
 9. **Dark Mode**: Theme toggle
 10. **Voice Commands**: "Delete task", "Mark as complete" voice actions
 
+## 🐛 Troubleshooting
+
+### MongoDB Connection Error
+
+```bash
+# Check if MongoDB is running
+# macOS:
+brew services list
+
+# Linux:
+sudo systemctl status mongod
+
+# Start MongoDB if not running
+brew services start mongodb-community  # macOS
+sudo systemctl start mongod            # Linux
+```
+
+### Groq API Error
+
+- Verify your API key in `.env`
+- Check your API quota at https://console.groq.com
+- Ensure you're using the correct model names
+
+### CORS Error
+
+- Make sure backend is running on port 5000
+- Check that frontend is using correct API URL
+- Verify CORS is enabled in backend
+
+### Voice Input Not Working
+
+- Check browser permissions for microphone
+- Use HTTPS (or localhost)
+- Test with different browsers
+
+## 📄 License
+
+MIT
+
 ## 👤 Author
 
-Riya Shree
+[Your Name]
 
 ## 🙏 Acknowledgments
 
