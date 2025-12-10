@@ -2,9 +2,6 @@
 
 A full-stack task management application with intelligent voice input powered by Groq AI. Users can create tasks by speaking naturally, and the system intelligently extracts task details like title, priority, due date, and status.
 
-## 🎥 Demo Video
-
-[Upload your demo video to Loom or Google Drive]
 
 ## ✨ Features
 
