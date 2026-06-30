@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, Plus, Search, Trash2, Edit2, X, Calendar } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL;
 
 // Task status and priority options
 const STATUSES = ['To Do', 'In Progress', 'Done'];
